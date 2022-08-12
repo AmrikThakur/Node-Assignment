@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 Server will run on PORT 4400.
 
-Command is used for running server.ts inside src folder.<br/>
+Command is used for running server.js inside src folder.<br/>
 
 The server will restart if you make edits.<br />
 You will also see errors if any in the console.

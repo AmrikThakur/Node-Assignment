@@ -1,4 +1,5 @@
 const { getAllCompanies, createCompany, updateCompany, deleteCompanyAPI } = require('../controllers/companies')
+
 // mock data
 const req = { body: { emai: "amrikthakur1996@gmail.com" } }
 const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };

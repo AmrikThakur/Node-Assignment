@@ -1,6 +1,7 @@
 const { getAllEmployee, createEmployee, updateEmployee, deleteEmployee } = require('../controllers/employee')
+
 // mock data
-const req = {}
+const req = { body: { emai: "amrikthakur1996@gmail.com" } }
 const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 const next = jest.fn()
 
@@ -8,6 +9,11 @@ const next = jest.fn()
 test('check Get All Employee api give success status', async () => {
     await getAllEmployee(req, res, next);
     expect(res.status).toBeCalledWith(200);
+});
+
+test('check Create Company api include email Id', async () => {
+    const { email } = req.body;
+    expect(email).not.toBe('')
 });
 
 test('check Create Employee api give success status', async () => {

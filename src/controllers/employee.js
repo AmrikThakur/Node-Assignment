@@ -9,7 +9,7 @@ const validateEmployee = require('../middleware/validations/employee')
 // Get Employee API
 exports.getAllEmployee = asyncMiddleware(async (req, res) => {
     const data = await Employee.findAll()
-    res.status(200).json({
+    return res.status(200).json({
         status: 'success',
         message: 'Employee lists fetched',
         data: {

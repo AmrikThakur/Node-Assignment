@@ -33,7 +33,7 @@ exports.createCompany = asyncMiddleware(async (req, res, next) => {
     })
 })
 
-// Updating Company API
+// Update Company API
 exports.updateCompany = asyncMiddleware(async (req, res) => {
     const companyId = req.params.id
     

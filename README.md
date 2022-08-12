@@ -33,6 +33,6 @@ npm install
 npm run dev
 ```
 
-### run test cases for development
+### run test cases 
 ```
 npm test

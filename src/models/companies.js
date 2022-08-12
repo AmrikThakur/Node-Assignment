@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize')
-const Joi = require('joi')
 
 module.exports = (sequelize) => {
     const Company = sequelize.define("company", {

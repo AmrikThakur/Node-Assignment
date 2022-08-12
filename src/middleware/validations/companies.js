@@ -12,7 +12,7 @@ const validateCompanies = (reqBody) => {
             'string.email': 'Email is not invalid!',
             'any.required': 'Email is required!'
         }),
-        phone: Joi.string().pattern(phoneNumberRegex).required().messages({
+        phone: Joi.string().pattern(new RegExp(phoneNumberRegex)).required().messages({
             'string.pattern.base': 'Invalid phone number!',
             'any.required': `Phone number is a required field!`
         }),

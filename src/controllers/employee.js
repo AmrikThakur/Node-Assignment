@@ -1,5 +1,5 @@
 
-const db = require('../models/index')
+const db = require('../models/index');
 const Employee = db.employee;
 const Company = db.companies
 const asyncMiddleware = require('../middleware/async')
@@ -25,9 +25,8 @@ exports.createEmployee = asyncMiddleware(async (req, res, next) => {
     if (error) return next(new AppError(error.details[0].message, 400))
 
     const body = { ...req.body }
-    const company = await Company.findByPk(body.companyId)
+    const company = await Company.findByPk(body.companyId);
     if (!company) return res.status(400).send({ message: "Company Id is required" })
-
     const data = await company.createEmployee(body)
     return res.status(200).json({
         status: 'success',

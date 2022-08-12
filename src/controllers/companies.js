@@ -1,4 +1,5 @@
 
+const jwt = require("jsonwebtoken");
 const db = require('../models/index')
 const Company = db.companies;
 const asyncMiddleware = require('../middleware/async')
@@ -24,8 +25,11 @@ exports.createCompany = asyncMiddleware(async (req, res, next) => {
     if (error) return next(new AppError(error.details[0].message, 400))
 
     let body = { ...req.body }
+    let data = await Company.create(body);
+    const token = jwt.sign({companyId: data.id} , process.env.JWT_SECRET , { expiresIn : '1h'})
+    data =  JSON.parse(JSON.stringify(data));
 
-    const data = await Company.create(body)
+    data["token"] = token;
     return res.status(200).json({
         status: 'success',
         message: 'Company Created Successfully',

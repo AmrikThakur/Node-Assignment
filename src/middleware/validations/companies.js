@@ -12,7 +12,7 @@ const validateCompanies = (reqBody) => {
             'string.email': 'Email is not invalid!',
             'any.required': 'Email is required!'
         }),
-        phone: Joi.string().pattern(new RegExp(phoneNumberRegex)).required().messages({
+        phone: Joi.string().pattern(phoneNumberRegex).required().messages({
             'string.pattern.base': 'Invalid phone number!',
             'any.required': `Phone number is a required field!`
         }),
@@ -21,7 +21,7 @@ const validateCompanies = (reqBody) => {
             'string.max': `website should have a minimum length of {#limit}!`,
         }),
     })
-   return schema.validate(reqBody)
+    return schema.validate(reqBody)
 }
 
 module.exports = validateCompanies

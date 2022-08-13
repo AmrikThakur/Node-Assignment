@@ -1,7 +1,7 @@
 const { getAllEmployee, createEmployee, updateEmployee, deleteEmployee } = require('../controllers/employee')
 
 // mock data
-const req = { body: { emai: "amrikthakur1996@gmail.com" } }
+const req = { body: { email: "amrikthakur1996@gmail.com" } }
 const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 const next = jest.fn()
 

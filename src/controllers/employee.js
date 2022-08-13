@@ -9,12 +9,9 @@ const validateEmployee = require('../middleware/validations/employee')
 // Get Employee API
 exports.getAllEmployee = asyncMiddleware(async (req, res) => {
     const data = await Employee.findAll()
-    return res.status(200).json({
-        status: 'success',
+    return res.status(200).send({
         message: 'Employee lists fetched',
-        data: {
-            employee: data
-        }
+        values: data
     })
 })
 
@@ -28,10 +25,9 @@ exports.createEmployee = asyncMiddleware(async (req, res, next) => {
     const company = await Company.findByPk(body.companyId);
     if (!company) return res.status(400).send({ message: "Company Id is required" })
     const data = await company.createEmployee(body)
-    return res.status(200).json({
-        status: 'success',
+    return res.status(200).send({
         message: 'Employee Created Successfully',
-        data
+        values: data
     })
 })
 
@@ -64,7 +60,7 @@ exports.deleteEmployee = asyncMiddleware(async (req, res) => {
         }
     })
     return res.status(200).send({
-        status: "Success",
+        message: "Employee Deleted Successfully",
         values: data
     })
 })

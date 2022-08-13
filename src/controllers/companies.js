@@ -9,12 +9,9 @@ const validateCompanies = require('../middleware/validations/companies')
 // Get Companies API
 exports.getAllCompanies = asyncMiddleware(async (req, res) => {
     const data = await Company.findAll()
-    return res.status(200).json({
-        status: 'success',
+    return res.status(200).send({
         message: 'Companies lists fetched',
-        data: {
-            companies: data
-        }
+        values: data
     })
 })
 
@@ -26,21 +23,20 @@ exports.createCompany = asyncMiddleware(async (req, res, next) => {
 
     let body = { ...req.body }
     let data = await Company.create(body);
-    const token = jwt.sign({companyId: data.id} , process.env.JWT_SECRET , { expiresIn : '1h'})
-    data =  JSON.parse(JSON.stringify(data));
+    const token = jwt.sign({ companyId: data.id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+    data = JSON.parse(JSON.stringify(data));
 
     data["token"] = token;
-    return res.status(200).json({
-        status: 'success',
+    return res.status(200).send({
         message: 'Company Created Successfully',
-        data
+        values: data
     })
 })
 
 // Update Company API
 exports.updateCompany = asyncMiddleware(async (req, res) => {
     const companyId = req.params.id
-    
+
     let data = await Company.findByPk(companyId)
     if (!data) return res.status(400).send({ message: 'Comapny does not exist with this id' })
 
@@ -66,7 +62,7 @@ exports.deleteCompanyAPI = asyncMiddleware(async (req, res) => {
         }
     })
     return res.status(200).send({
-        status: "Success",
+        message: "Company Deleted Successfully",
         values: data
     })
 })

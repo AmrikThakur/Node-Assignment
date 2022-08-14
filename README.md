@@ -36,3 +36,43 @@ npm run dev
 ### run test cases 
 ```
 npm test
+
+
+```
+### Environment Variables Used
+```
+
+DB_PASS - database password
+DB_USER - database username
+PORT - runing port
+JWT_SECRET - jws secret key
+
+
+```
+### API's EndPoints Company API's
+```
+GetCompanies -(get)  http://localhost:4400/api/v1/company
+
+CreateCompany -(post) http://localhost:4400/api/v1/company/
+
+UpdateCompany -(put) http://localhost:4400/api/v1/company/id
+
+DeleteCompany -(delete) http://localhost:4400/api/v1/company/id
+
+
+
+```
+### API's EndPoints Employee API's
+```
+```
+### Note - All Employee API's need  AuthToken,which we generate on Creation of Company API.
+
+```
+
+GetEmployee -(get) http://localhost:4400/api/v1/employee/
+
+CreateEmployee -(post) http://localhost:4400/api/v1/employee/
+
+UpdateEmployee -(put) http://localhost:4400/api/v1/company/id
+
+DeleteEmployee -(delete) http://localhost:4400/api/v1/employee/id

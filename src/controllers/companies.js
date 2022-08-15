@@ -18,9 +18,6 @@ exports.getAllCompanies = asyncMiddleware(async (req, res) => {
 // Create Company API
 exports.createCompany = asyncMiddleware(async (req, res, next) => {
 
-    const { error } = validateCompanies(req.body)
-    if (error) return next(new AppError(error.details[0].message, 400))
-
     let body = { ...req.body }
     let data = await Company.create(body);
     const token = jwt.sign({ companyId: data.id }, process.env.JWT_SECRET, { expiresIn: '1h' })

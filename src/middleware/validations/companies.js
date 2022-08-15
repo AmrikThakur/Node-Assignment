@@ -1,7 +1,8 @@
 const Joi = require('joi')
 const { phoneNumberRegex } = require('../../utils/shared')
+const AppError = require('../../common/appError')
 
-const validateCompanies = (reqBody) => {
+module.exports = function (req, res, next) {
     const schema = Joi.object({
         name: Joi.string().min(3).max(30).required().messages({
             'string.min': `name should have a minimum length of {#limit}!`,
@@ -21,7 +22,12 @@ const validateCompanies = (reqBody) => {
             'string.max': `website should have a minimum length of {#limit}!`,
         }),
     })
-    return schema.validate(reqBody)
+    const { error } = schema.validate(req.body)
+    if (error) {
+        return res.status(400).send({ message: error.details[0].message })
+    }
+    return next()
 }
 
-module.exports = validateCompanies
+// module.exports = validateCompanies
+// export default validateCompanies

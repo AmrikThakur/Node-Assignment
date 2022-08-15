@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const { phoneNumberRegex } = require('../../utils/shared')
 
-const validateEmployee = (reqBody) => {
+module.exports = (req, res, next) => {
     const schema = Joi.object({
         firstName: Joi.string().min(3).max(30).required().messages({
             'string.min': `firstName should have a minimum length of {#limit}!`,
@@ -25,7 +25,9 @@ const validateEmployee = (reqBody) => {
             'any.required': `CompanyId is required!`
         })
     })
-    return schema.validate(reqBody)
+    const { error } = schema.validate(req.body)
+    if (error) {
+        return res.status(400).send({ message: error.details[0].message })
+    }
+    return next()
 }
-
-module.exports = validateEmployee

@@ -18,9 +18,6 @@ exports.getAllEmployee = asyncMiddleware(async (req, res) => {
 // Create Employee API
 exports.createEmployee = asyncMiddleware(async (req, res, next) => {
 
-    const { error } = validateEmployee(req.body)
-    if (error) return next(new AppError(error.details[0].message, 400))
-
     const body = { ...req.body }
     const company = await Company.findByPk(body.companyId);
     if (!company) return res.status(400).send({ message: "Company Id is required" })

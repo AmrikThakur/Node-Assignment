@@ -22,10 +22,11 @@ describe('Testing Company API\'s', () => {
     });
 
     test('check Create Company api give success status', async () => {
-        await createCompany(req, res, next);
-        setTimeout(() => {
-            expect(res.status).toBeCalledWith(200);
-        }, 1000)
+        new Promise((resolve, reject) => {
+            return resolve(createCompany(req, res, next))
+        }).then((res) => {
+            expect(res.status).toBe(200);
+        })
     });
 
     test('check Update Company api give success status', async () => {
@@ -34,6 +35,7 @@ describe('Testing Company API\'s', () => {
             expect(res.status).toBeCalledWith(200);
         }, 1000)
     });
+
     test('check Delete Company api give success status', async () => {
         await deleteCompanyAPI(req, res, next);
         setTimeout(() => {

@@ -1,17 +1,17 @@
-const dbConfig = require("../config/database.config");
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
+const dbConfig = require('../config/database.config');
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
-    operatorsAliases: false,
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
+  operatorsAliases: false,
 });
 
-const db = {}
-db.Sequelize= Sequelize;
-db.sequelize= sequelize;
+const db = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-db.employee= require("./employee")(sequelize, Sequelize);
-db.companies= require("./companies")(sequelize, Sequelize);
+db.employee = require('./employee')(sequelize, Sequelize);
+db.companies = require('./companies')(sequelize, Sequelize);
 
 module.exports = db;

@@ -23,22 +23,16 @@ describe('Testing Employee API\'s', () => {
 
   test('check Create Employee api give success status', async () => {
     await createEmployee(req, res, next);
-    setTimeout(() => {
-      expect(res.status).toBeCalledWith(200);
-    }, 1000);
+    expect(res.status).toBeCalledWith(200);
   });
 
   test('check Update Employee api give success status', async () => {
     await updateEmployee(req, res, next);
-    setTimeout(() => {
-      expect(res.status).toBeCalledWith(200);
-    }, 1000);
+    expect(res.status).toBeCalledWith(200);
   });
 
   test('check Delete Employee api give success status', async () => {
     await deleteEmployee(req, res, next);
-    setTimeout(() => {
-      expect(res.status).toBeCalledWith(200);
-    }, 1000);
+    expect(res.status).toBeCalledWith(200);
   });
 });
